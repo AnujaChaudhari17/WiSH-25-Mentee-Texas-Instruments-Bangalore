@@ -2,8 +2,7 @@
 Lab content for offline WiSH 2025 Digital sessions.
 
 ## 1_combinational
-    ├── adder       (Solution code present)
-    ├── alu
+    ├── adder                       (Solution code present)
     ├── hc_dec
     ├── hc_enc
     ├── prog_add_sub
@@ -11,18 +10,17 @@ Lab content for offline WiSH 2025 Digital sessions.
     └── trailing_one_detect
 
 ## 2_sequential
-    ├── dff         (Solution code present)
+    ├── dff                         (Solution code present)
     ├── division
     ├── fifo
     ├── fir_filter
     ├── moving_average
     ├── seq_detect
-    ├── sram_model
     └── usb_decode
 
 ## 3_riscv
     ver
-    ├── alu_core.sv                 (similar to 1_combinational/alu/alu_core.sv)
+    ├── alu_core.sv
     ├── alu.sv                      (Solution code present)
     ├── branch.sv
     ├── decode_branch_inst.sv
@@ -38,7 +36,7 @@ Lab content for offline WiSH 2025 Digital sessions.
     ├── inst_data_arbiter.sv
     ├── jump.sv
     ├── load.sv
-    ├── mem.sv                      (similar to 2_sequential/sram_model/mem.sv)
+    ├── mem.sv
     ├── processor.sv                (Solution code present)
     ├── regfile.sv
     └── store.sv
