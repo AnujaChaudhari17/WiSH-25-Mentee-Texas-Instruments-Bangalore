@@ -41,7 +41,5 @@ Lab content for offline WiSH 2025 Digital sessions.
     ├── regfile.sv
     └── store.sv
 
-## demo
-To get familiar with verilog testbench, cocotb testbench, gtkwave, etc.
-Steps to use mentioned in the VM setup slides.
+
 
