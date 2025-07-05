@@ -1,0 +1,4 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/wishuser/wish25-course/3_riscv/sim_submodules'
+make[1]: Leaving directory '/home/wishuser/wish25-course/3_riscv/sim_submodules'
