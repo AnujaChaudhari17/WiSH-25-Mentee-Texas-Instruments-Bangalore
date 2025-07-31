@@ -18,13 +18,12 @@ module inst_data_arbiter(
 
 // Edit the code here begin ---------------------------------------------------
 
-    assign instruction_code = 'b0;
-    assign mem_read_data = 'b0;
-    assign to_mem_addr = 'b0;
-    assign to_mem_rw_mode = 'b0;
-    assign to_mem_write_data = 'b0;
-    assign to_mem_byte_en = 'b0;
+    assign instruction_code = (ignore_curr_inst)? 0 : from_mem_data;
+    assign mem_read_data = (ignore_curr_inst)? from_mem_data : 0;
+    assign to_mem_addr = (stall_pc)? mem_addr : inst_addr;
+    assign to_mem_rw_mode = (stall_pc)? mem_rw_mode : 1'b1;
+    assign to_mem_write_data = (stall_pc)? mem_write_data : 32'b0;
+    assign to_mem_byte_en = (stall_pc)? mem_byte_en: 4'b0;
     
-// Edit the code here end -----------------------------------------------------
+    endmodule
 
-endmodule
