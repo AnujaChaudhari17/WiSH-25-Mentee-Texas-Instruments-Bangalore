@@ -19,11 +19,38 @@ module jump(
 
 // Edit the code here begin ---------------------------------------------------
 
-    assign rd_write_control = 'b0;
-    assign rd_write_val = 'b0;
-    assign pc_update_control = 'b0;
-    assign pc_update_val = 'b0;
-    assign ignore_curr_inst = 'b0;
+    
+    
+   
+    always@(posedge i_clk or negedge i_rst) begin
+        if(~i_rst) begin
+            ignore_curr_inst <= 1'b0;
+        end
+        else 
+    ignore_curr_inst <= pc_update_control;
+    end
+    
+    always_comb begin
+        if(jump_control == `JAL) begin
+        
+            pc_update_control = 'b1;
+            pc_update_val = pc + imm;
+            rd_write_control = 1'b1;
+            rd_write_val = pc + 4;
+        end
+        else if(jump_control == `JALR) begin      
+            pc_update_control = 1'b1;
+            pc_update_val = rs1_val + imm;
+            rd_write_control = 1'b1;
+            rd_write_val = pc+4;           
+        end
+        else if(jump_control== `JMP_NOP) begin      
+       pc_update_control = 1'b0;
+            pc_update_val = 32'b0;
+            rd_write_control = 1'b0;
+            rd_write_val = 32'b0;
+        end
+    end
     
 // Edit the code here end -----------------------------------------------------
 
