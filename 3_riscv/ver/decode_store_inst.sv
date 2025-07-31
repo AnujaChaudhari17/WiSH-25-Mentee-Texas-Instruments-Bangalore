@@ -13,11 +13,24 @@ module decode_store_inst(
 
 // Edit the code here begin ---------------------------------------------------
 
-    assign rs1 = 'b0;
-    assign rs2 = 'b0;
-    assign imm = 'b0;
-    assign store_control = 'b0;
-    
+    // assign rs1 = 'b0;
+    // assign rs2 = 'b0;
+    // assign imm = 'b0;
+    // assign store_control = 'b0;
+    logic [2:0] func3;
+
+    always_comb begin
+        rs1 = instruction_code[19:15];
+        rs2 = instruction_code[24:20];
+        imm = {instruction_code[31:25],instruction_code[11:7]};
+        func3 =  instruction_code[14:12];
+        case(func3)
+        3'b000: store_control = `SB;
+        3'b001: store_control = `SH;
+        3'b010: store_control = `SW;
+        default : store_control = 3'b0;
+        endcase
+    end
 // Edit the code here end -----------------------------------------------------
 
 /*
@@ -32,3 +45,4 @@ module decode_store_inst(
 `endif
 
 endmodule
+
