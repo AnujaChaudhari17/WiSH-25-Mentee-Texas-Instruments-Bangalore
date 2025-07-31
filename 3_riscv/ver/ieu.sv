@@ -150,8 +150,21 @@ always @ (*) begin
     else
         rd_muxed = rd;
 
-    rd_write_control = alu_rd_write_control | jump_rd_write_control | load_rd_write_control;
-    rd_write_val = alu_rd_write_val | jump_rd_write_val | load_rd_write_val;
+    // rd_write_control = alu_rd_write_control | jump_rd_write_control | load_rd_write_control;
+    // rd_write_val = alu_rd_write_val | jump_rd_write_val | load_rd_write_val;
+     if (alu_rd_write_control) begin
+        rd_write_control = 1;
+        rd_write_val = alu_rd_write_val;
+    end else if (jump_rd_write_control) begin
+        rd_write_control = 1;
+        rd_write_val = jump_rd_write_val;
+    end else if (load_rd_write_control) begin
+        rd_write_control = 1;
+        rd_write_val = load_rd_write_val;
+    end else begin
+        rd_write_control = 0;
+        rd_write_val = 32'd0;
+    end
     
     pc_update_control = branch_pc_update_control | jump_pc_update_control;
     pc_update_val = branch_pc_update_val  | jump_pc_update_val;
