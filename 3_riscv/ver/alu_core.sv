@@ -17,7 +17,20 @@ module alu_core(
 
 // Edit the code here begin ---------------------------------------------------
 
-    assign rd_write_val = 'b0;
+    //assign rd_write_val = 'b0;
+    always_comb begin
+        case(alu_control)
+        5'd1: rd_write_val = rs1_val + rs2_val;
+        5'd2: rd_write_val= rs1_val - rs2_val;
+        5'd3:rd_write_val = rs1_val ^ rs2_val;
+        5'd4: rd_write_val = rs1_val | rs2_val;
+        5'd5:rd_write_val = rs1_val & rs2_val;
+        5'd6: rd_write_val = rs1_val << rs2_val;
+        5'd7:rd_write_val =  rs1_val >> rs2_val;
+        default: rd_write_val = 32'b0;
+        endcase
+
+    end
     
 // Edit the code here end -----------------------------------------------------
 
