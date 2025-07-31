@@ -11,8 +11,31 @@ module ifu(
 
 // Edit the code here begin ---------------------------------------------------
 
-    assign pc = 'b0;
-    assign prev_pc = 'b0;
+    //assign pc = 'b0;
+    //assign prev_pc = 'b0;
+    always@(posedge i_clk or negedge i_rst) begin
+        if(i_rst == 0)begin
+            pc <= 32'b0;
+            prev_pc <= 32'b0;
+        end
+        else if(stall_pc == 0)begin
+            if(pc_update_control)begin
+                prev_pc <= pc;
+                pc <= pc_update_val;
+            end
+            else begin
+            
+                prev_pc <= pc;
+                pc <= pc + 4;
+            
+        end
+        end
+        else begin
+            pc <= pc;
+            prev_pc <= prev_pc;
+        end
+        
+    end
     
 // Edit the code here end -----------------------------------------------------
 
